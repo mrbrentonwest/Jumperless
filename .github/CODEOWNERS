@@ -1,0 +1,15 @@
+# CODEOWNERS - Define code ownership for automatic review requests
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owners for everything in the repo
+* @YOUR_ORG/maintainers
+
+# Specific path ownership examples (uncomment and customize):
+# /src/api/        @YOUR_ORG/backend-team
+# /src/components/ @YOUR_ORG/frontend-team
+# /docs/           @YOUR_ORG/docs-team
+# /.github/        @YOUR_ORG/devops-team
+
+# Protect sensitive files
+# /scripts/        @YOUR_ORG/senior-devs
+# SECURITY.md      @YOUR_ORG/security-team

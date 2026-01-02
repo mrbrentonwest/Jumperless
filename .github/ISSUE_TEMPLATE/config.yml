@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Documentation
+    url: https://github.com/YOUR_ORG/YOUR_REPO/wiki
+    about: Check our documentation before opening an issue

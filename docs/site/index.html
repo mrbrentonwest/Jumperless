@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>project-starter | Getting Started</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-secondary: #f5f5f5;
+      --text: #1a1a1a;
+      --text-muted: #666666;
+      --accent: #0066cc;
+      --accent-hover: #0052a3;
+      --border: #e0e0e0;
+      --code-bg: #f0f0f0;
+      --success: #28a745;
+      --warning: #ffc107;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1a1a1a;
+        --bg-secondary: #2d2d2d;
+        --text: #e0e0e0;
+        --text-muted: #999999;
+        --accent: #4da6ff;
+        --accent-hover: #80c0ff;
+        --border: #404040;
+        --code-bg: #2d2d2d;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .controls {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .controls button {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .controls button:hover {
+      background: var(--border);
+    }
+
+    .accordion-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+
+    .accordion-header {
+      width: 100%;
+      background: var(--bg-secondary);
+      border: none;
+      padding: 1rem 1.5rem;
+      text-align: left;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: background 0.2s;
+    }
+
+    .accordion-header:hover {
+      background: var(--border);
+    }
+
+    .accordion-header::before {
+      content: '▶';
+      font-size: 0.8rem;
+      transition: transform 0.2s;
+    }
+
+    .accordion-item.open .accordion-header::before {
+      transform: rotate(90deg);
+    }
+
+    .accordion-content {
+      display: none;
+      padding: 1.5rem;
+      background: var(--bg);
+    }
+
+    .accordion-item.open .accordion-content {
+      display: block;
+    }
+
+    .accordion-content h3 {
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: var(--accent);
+    }
+
+    .accordion-content h3:first-child {
+      margin-top: 0;
+    }
+
+    .accordion-content p {
+      margin-bottom: 1rem;
+    }
+
+    .accordion-content ul, .accordion-content ol {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+    }
+
+    .accordion-content li {
+      margin-bottom: 0.5rem;
+    }
+
+    code {
+      background: var(--code-bg);
+      padding: 0.2rem 0.4rem;
+      border-radius: 3px;
+      font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+      font-size: 0.9em;
+    }
+
+    pre {
+      background: var(--code-bg);
+      padding: 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      margin-bottom: 1rem;
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1rem;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.75rem;
+      text-align: left;
+    }
+
+    th {
+      background: var(--bg-secondary);
+      font-weight: 600;
+    }
+
+    .file-tree {
+      font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+      font-size: 0.9rem;
+      background: var(--code-bg);
+      padding: 1rem;
+      border-radius: 6px;
+      white-space: pre;
+      overflow-x: auto;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .badge-ai { background: #e3f2fd; color: #1565c0; }
+    .badge-doc { background: #f3e5f5; color: #7b1fa2; }
+    .badge-git { background: #fce4ec; color: #c62828; }
+
+    @media (prefers-color-scheme: dark) {
+      .badge-ai { background: #1e3a5f; color: #90caf9; }
+      .badge-doc { background: #4a1e5e; color: #ce93d8; }
+      .badge-git { background: #5f1e1e; color: #ef9a9a; }
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media print {
+      .controls { display: none; }
+      .accordion-item { break-inside: avoid; }
+      .accordion-content { display: block !important; }
+      .accordion-header::before { content: ''; }
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 1rem; }
+      header h1 { font-size: 1.8rem; }
+      .accordion-header { padding: 0.875rem 1rem; font-size: 1rem; }
+      .accordion-content { padding: 1rem; }
+      table { font-size: 0.85rem; }
+      th, td { padding: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>project-starter</h1>
+    <p>A reusable template for AI-assisted development with built-in documentation freshness</p>
+  </header>
+
+  <div class="controls">
+    <button onclick="expandAll()">Expand All</button>
+    <button onclick="collapseAll()">Collapse All</button>
+  </div>
+
+  <main>
+    <!-- Quick Start -->
+    <section class="accordion-item open">
+      <button class="accordion-header">Quick Start</button>
+      <div class="accordion-content">
+        <h3>Create a New Project</h3>
+        <pre><code>gh repo create MyProject --template Brenton-Thriviti/project-starter --clone
+cd MyProject</code></pre>
+
+        <h3>What You Get Immediately</h3>
+        <ul>
+          <li>6 AI coding tools pre-configured (Claude, Cursor, Copilot, Gemini, Codex, Windsurf)</li>
+          <li>Spec-driven development workflow</li>
+          <li>Documentation freshness system with expiry dates</li>
+          <li>Interactive git helper for teams</li>
+          <li>GitHub issue/PR templates</li>
+          <li>Editor configuration (.editorconfig, VS Code settings)</li>
+        </ul>
+
+        <h3>First Steps After Cloning</h3>
+        <ol>
+          <li>Run <code>/speckit.constitution</code> to review project principles</li>
+          <li>Update <code>.speckit/memory/team.md</code> with team members</li>
+          <li>Start building with <code>/speckit.specify</code></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Multi-AI Support -->
+    <section class="accordion-item">
+      <button class="accordion-header">Multi-AI Support (6 Tools)</button>
+      <div class="accordion-content">
+        <p>This template comes pre-configured for 6 AI coding assistants. All share the same <code>.speckit/</code> core.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Tool</th>
+              <th>AI Assistant</th>
+              <th>Commands Location</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>claude</code></td>
+              <td>Claude Code</td>
+              <td><code>.claude/commands/</code></td>
+            </tr>
+            <tr>
+              <td><code>cursor-agent</code></td>
+              <td>Cursor</td>
+              <td><code>.cursor/</code></td>
+            </tr>
+            <tr>
+              <td><code>copilot</code></td>
+              <td>GitHub Copilot</td>
+              <td><code>.github/copilot-instructions.md</code></td>
+            </tr>
+            <tr>
+              <td><code>gemini</code></td>
+              <td>Gemini CLI</td>
+              <td><code>.gemini/</code></td>
+            </tr>
+            <tr>
+              <td><code>codex</code></td>
+              <td>OpenAI Codex CLI</td>
+              <td><code>.codex/</code></td>
+            </tr>
+            <tr>
+              <td><code>windsurf</code></td>
+              <td>Windsurf</td>
+              <td><code>.windsurf/</code></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Adding More AI Tools</h3>
+        <p>Need a different tool? Add it with:</p>
+        <pre><code>specify init . --ai qwen --force
+specify init . --ai opencode --force
+specify init . --ai amp --force</code></pre>
+      </div>
+    </section>
+
+    <!-- Spec-Driven Development -->
+    <section class="accordion-item">
+      <button class="accordion-header">Spec-Driven Development</button>
+      <div class="accordion-content">
+        <h3>What is Spec-Kit?</h3>
+        <p>Spec-Kit is GitHub's toolkit for spec-driven development. Instead of jumping straight to code, you define <strong>what</strong> you're building first, then let AI help implement it.</p>
+
+        <h3>Available Commands</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Command</th>
+              <th>Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>/speckit.constitution</code></td>
+              <td>Define project principles and guidelines</td>
+            </tr>
+            <tr>
+              <td><code>/speckit.specify</code></td>
+              <td>Create a specification for what you want to build</td>
+            </tr>
+            <tr>
+              <td><code>/speckit.plan</code></td>
+              <td>Generate an implementation plan from your spec</td>
+            </tr>
+            <tr>
+              <td><code>/speckit.tasks</code></td>
+              <td>Break the plan into actionable tasks</td>
+            </tr>
+            <tr>
+              <td><code>/speckit.implement</code></td>
+              <td>Execute tasks to build your feature</td>
+            </tr>
+            <tr>
+              <td><code>/speckit.checklist</code></td>
+              <td>Generate a verification checklist</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Workflow</h3>
+        <pre><code>constitution → specify → plan → tasks → implement</code></pre>
+      </div>
+    </section>
+
+    <!-- Documentation Freshness -->
+    <section class="accordion-item">
+      <button class="accordion-header">Documentation Freshness (RFC Pattern)</button>
+      <div class="accordion-content">
+        <h3>RFC Pattern + Expiry Headers</h3>
+        <p>Every document in <code>.speckit/</code> uses YAML frontmatter to track freshness:</p>
+        <pre><code>---
+id: SPEC-001-feature-name
+type: spec
+created: 2025-01-02
+last_updated: 2025-01-02
+review_by: 2025-04-02
+status: active
+---</code></pre>
+
+        <h3>Document Types</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Mutable?</th>
+              <th>Review Period</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>spec</code></td>
+              <td>Yes</td>
+              <td>90 days</td>
+            </tr>
+            <tr>
+              <td><code>gap-analysis</code></td>
+              <td>No (immutable)</td>
+              <td>30 days</td>
+            </tr>
+            <tr>
+              <td><code>research</code></td>
+              <td>No (immutable)</td>
+              <td>180 days</td>
+            </tr>
+            <tr>
+              <td><code>memory</code></td>
+              <td>Yes (sparingly)</td>
+              <td>Annual</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>/docs-audit Command</h3>
+        <p>Run <code>/docs-audit</code> to scan for stale documentation:</p>
+        <pre><code>## Doc Audit Report
+
+### Expired (need review)
+- .speckit/specs/001-feature/spec.md (30 days overdue)
+
+### Missing Frontmatter
+- .speckit/specs/002-feature/notes.md
+
+### Summary
+- 12 documents scanned
+- 2 need attention</code></pre>
+      </div>
+    </section>
+
+    <!-- Git for Teams -->
+    <section class="accordion-item">
+      <button class="accordion-header">Git for Teams (/git command)</button>
+      <div class="accordion-content">
+        <h3>Interactive Git Helper</h3>
+        <p>No git commands to remember. Just run <code>/git</code> and choose what you want to do:</p>
+
+        <pre><code>Branch: main
+Changes: 3 files modified
+
+What would you like to do?
+  1. Create a new branch
+  2. Save my work (commit)
+  3. Push to remote
+  4. Get latest from main</code></pre>
+
+        <h3>Branch Naming</h3>
+        <p>Branches follow the pattern: <code>{username}/{description}</code></p>
+        <ul>
+          <li><code>brenton/add-login-feature</code></li>
+          <li><code>ryan/fix-modal-bug</code></li>
+          <li><code>scott/update-readme</code></li>
+        </ul>
+
+        <h3>Team Configuration</h3>
+        <p>Edit <code>.speckit/memory/team.md</code> to add team members for the branch selector.</p>
+      </div>
+    </section>
+
+    <!-- GitHub Configuration -->
+    <section class="accordion-item">
+      <button class="accordion-header">GitHub Configuration</button>
+      <div class="accordion-content">
+        <h3>Issue Templates</h3>
+        <p>Located in <code>.github/ISSUE_TEMPLATE/</code>:</p>
+        <ul>
+          <li><strong>bug_report.md</strong> - Structured bug reports with reproduction steps</li>
+          <li><strong>feature_request.md</strong> - Feature proposals with use cases</li>
+          <li><strong>config.yml</strong> - Template chooser configuration</li>
+        </ul>
+
+        <h3>Pull Request Template</h3>
+        <p><code>.github/PULL_REQUEST_TEMPLATE.md</code> includes a checklist for code review.</p>
+
+        <h3>CODEOWNERS</h3>
+        <p><code>.github/CODEOWNERS</code> auto-assigns reviewers based on file paths.</p>
+
+        <h3>Dependabot</h3>
+        <p><code>.github/dependabot.yml</code> keeps dependencies updated with automated PRs.</p>
+      </div>
+    </section>
+
+    <!-- Project Structure -->
+    <section class="accordion-item">
+      <button class="accordion-header">Project Structure</button>
+      <div class="accordion-content">
+        <div class="file-tree">project-starter/
+├── .claude/                     # Claude Code
+│   ├── commands/                # Slash commands
+│   └── skills/                  # Context skills
+├── .codex/                      # OpenAI Codex CLI
+├── .cursor/                     # Cursor
+├── .gemini/                     # Gemini CLI
+├── .windsurf/                   # Windsurf
+├── .github/
+│   ├── ISSUE_TEMPLATE/          # Issue templates
+│   ├── PULL_REQUEST_TEMPLATE.md
+│   ├── CODEOWNERS
+│   ├── copilot-instructions.md  # GitHub Copilot
+│   └── dependabot.yml
+├── .speckit/
+│   ├── memory/                  # Persistent knowledge
+│   │   ├── constitution.md
+│   │   ├── documentation-strategy.md
+│   │   ├── team.md
+│   │   └── customizations.md
+│   ├── specs/                   # Feature specs
+│   ├── spec.md                  # Current spec
+│   ├── plan.md                  # Current plan
+│   └── tasks.md                 # Current tasks
+├── .vscode/                     # VS Code config
+├── docs/
+│   ├── site/                    # This guide
+│   ├── GIT_GUIDE.md
+│   ├── GETTING_STARTED.md
+│   └── ENVIRONMENT_SETUP.md
+├── scripts/
+│   ├── git-helper.sh
+│   └── upgrade-speckit.sh
+├── .editorconfig
+├── .gitignore
+├── CLAUDE.md
+├── CONTRIBUTING.md
+├── README.md
+└── SECURITY.md</div>
+      </div>
+    </section>
+
+    <!-- Upgrading -->
+    <section class="accordion-item">
+      <button class="accordion-header">Upgrading & Maintenance</button>
+      <div class="accordion-content">
+        <h3>Tracking Customizations</h3>
+        <p><code>.speckit/memory/customizations.md</code> documents all changes made to the template:</p>
+        <ul>
+          <li>Added frontmatter fields</li>
+          <li>Modified templates</li>
+          <li>Custom commands</li>
+          <li>Custom skills</li>
+        </ul>
+
+        <h3>Upgrading Spec-Kit</h3>
+        <p>When new spec-kit features are released:</p>
+        <pre><code>./scripts/upgrade-speckit.sh</code></pre>
+        <p>This script:</p>
+        <ol>
+          <li>Fetches latest spec-kit templates</li>
+          <li>Shows diff of changes</li>
+          <li>Lets you selectively merge updates</li>
+        </ol>
+
+        <h3>When to Upgrade</h3>
+        <ul>
+          <li>New AI tools are added to spec-kit</li>
+          <li>Important bug fixes or improvements</li>
+          <li>New commands you want to use</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      <a href="https://github.com/Brenton-Thriviti/project-starter">View on GitHub</a> |
+      <a href="https://github.com/github/spec-kit">Spec-Kit Documentation</a>
+    </p>
+    <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+      Just open this file in any browser - no server required.
+    </p>
+  </footer>
+
+  <script>
+    // Accordion functionality
+    document.querySelectorAll('.accordion-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const item = header.parentElement;
+        item.classList.toggle('open');
+      });
+
+      // Keyboard accessibility
+      header.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          header.click();
+        }
+      });
+    });
+
+    function expandAll() {
+      document.querySelectorAll('.accordion-item').forEach(item => {
+        item.classList.add('open');
+      });
+    }
+
+    function collapseAll() {
+      document.querySelectorAll('.accordion-item').forEach(item => {
+        item.classList.remove('open');
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+# Dependencies
+node_modules/
+vendor/
+.pnp/
+.pnp.js
+
+# Build outputs
+dist/
+build/
+out/
+*.egg-info/
+*.egg
+*.whl
+target/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+.envrc
+*.local
+
+# IDE and editors
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Testing
+coverage/
+.nyc_output/
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+
+# Cache
+.cache/
+*.cache
+.parcel-cache/
+.next/
+.nuxt/
+.turbo/
+
+# Package manager locks (uncomment one to keep)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Secrets and credentials
+*.pem
+*.key
+*.p12
+credentials.json
+secrets.json
+service-account*.json
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# AI tool artifacts (may contain sensitive data)
+# Uncomment if you want to ignore AI tool folders:
+# .claude/
+# .cursor/
+# .codex/
