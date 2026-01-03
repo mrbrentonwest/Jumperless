@@ -76,6 +76,9 @@ temp/
 *.tmp
 *.temp
 
+# Jumperless app data (device-specific)
+Data/
+
 # Secrets and credentials
 *.pem
 *.key
