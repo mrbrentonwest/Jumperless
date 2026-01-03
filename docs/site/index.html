@@ -268,7 +268,7 @@
 
   <main>
     <!-- Quick Start -->
-    <section class="accordion-item open">
+    <section class="accordion-item">
       <button class="accordion-header">Quick Start</button>
       <div class="accordion-content">
         <h3>Create a New Project</h3>
@@ -288,7 +288,7 @@ cd MyProject</code></pre>
         <h3>First Steps After Cloning</h3>
         <ol>
           <li>Run <code>/speckit.constitution</code> to review project principles</li>
-          <li>Update <code>.speckit/memory/team.md</code> with team members</li>
+          <li>Update <code>.specify/memory/team.md</code> with team members</li>
           <li>Start building with <code>/speckit.specify</code></li>
         </ol>
       </div>
@@ -298,7 +298,7 @@ cd MyProject</code></pre>
     <section class="accordion-item">
       <button class="accordion-header">Multi-AI Support (6 Tools)</button>
       <div class="accordion-content">
-        <p>This template comes pre-configured for 6 AI coding assistants. All share the same <code>.speckit/</code> core.</p>
+        <p>This template comes pre-configured for 6 AI coding assistants. All share the same <code>.specify/</code> core.</p>
 
         <table>
           <thead>
@@ -355,46 +355,99 @@ specify init . --ai amp --force</code></pre>
       <button class="accordion-header">Spec-Driven Development</button>
       <div class="accordion-content">
         <h3>What is Spec-Kit?</h3>
-        <p>Spec-Kit is GitHub's toolkit for spec-driven development. Instead of jumping straight to code, you define <strong>what</strong> you're building first, then let AI help implement it.</p>
+        <p>Spec-Kit is a toolkit for spec-driven development. Instead of jumping straight to code, you define <strong>what</strong> you're building first, then let AI help implement it.</p>
 
-        <h3>Available Commands</h3>
+        <h3>Content Flow</h3>
         <table>
           <thead>
             <tr>
-              <th>Command</th>
+              <th>Content</th>
+              <th>Location</th>
               <th>Purpose</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><code>/speckit.constitution</code></td>
-              <td>Define project principles and guidelines</td>
+              <td>Specs</td>
+              <td><code>.specify/specs/[FEATURE]/</code></td>
+              <td>Define what to build</td>
             </tr>
             <tr>
-              <td><code>/speckit.specify</code></td>
-              <td>Create a specification for what you want to build</td>
-            </tr>
-            <tr>
-              <td><code>/speckit.plan</code></td>
-              <td>Generate an implementation plan from your spec</td>
-            </tr>
-            <tr>
-              <td><code>/speckit.tasks</code></td>
-              <td>Break the plan into actionable tasks</td>
-            </tr>
-            <tr>
-              <td><code>/speckit.implement</code></td>
-              <td>Execute tasks to build your feature</td>
-            </tr>
-            <tr>
-              <td><code>/speckit.checklist</code></td>
-              <td>Generate a verification checklist</td>
+              <td>Code</td>
+              <td>Project root (<code>src/</code>, etc.)</td>
+              <td>The actual implementation</td>
             </tr>
           </tbody>
         </table>
 
-        <h3>Workflow</h3>
-        <pre><code>constitution → specify → plan → tasks → implement</code></pre>
+        <h3>Per-Feature Folder Structure</h3>
+        <p>Each feature gets its own folder in <code>.specify/specs/</code>:</p>
+        <div class="file-tree">.specify/specs/
+└── user-authentication/        # Feature folder
+    ├── spec.md                 # What to build
+    ├── plan.md                 # How to build
+    ├── tasks.md                # Work breakdown
+    ├── research.md             # (optional)
+    └── gap.md                  # (optional)</div>
+
+        <h3>Command Workflow</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Command</th>
+              <th>Purpose</th>
+              <th>Creates</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>/speckit.constitution</code></td>
+              <td>Define project principles (one-time)</td>
+              <td>constitution.md</td>
+            </tr>
+            <tr>
+              <td><code>/speckit.specify</code></td>
+              <td>Create specification</td>
+              <td>spec.md</td>
+            </tr>
+            <tr>
+              <td><code>/speckit.clarify</code></td>
+              <td>Ask clarifying questions</td>
+              <td>Updates spec.md</td>
+            </tr>
+            <tr>
+              <td><code>/speckit.plan</code></td>
+              <td>Generate implementation plan</td>
+              <td>plan.md</td>
+            </tr>
+            <tr>
+              <td><code>/speckit.tasks</code></td>
+              <td>Break into tasks</td>
+              <td>tasks.md</td>
+            </tr>
+            <tr>
+              <td><code>/speckit.analyze</code></td>
+              <td>Cross-artifact consistency check</td>
+              <td>Report</td>
+            </tr>
+            <tr>
+              <td><code>/speckit.implement</code></td>
+              <td>Execute tasks</td>
+              <td>Code in project root</td>
+            </tr>
+            <tr>
+              <td><code>/speckit.checklist</code></td>
+              <td>Generate verification checklist</td>
+              <td>checklist.md</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Visual Workflow</h3>
+        <pre><code>constitution → specify → clarify → plan → tasks → analyze → implement → checklist</code></pre>
+
+        <h3>Key Insight</h3>
+        <p>The <code>.specify/</code> folder contains <strong>planning documents only</strong>. All actual code is written to the main project structure (<code>src/</code>, <code>backend/</code>, <code>frontend/</code>, etc.).</p>
       </div>
     </section>
 
@@ -403,7 +456,7 @@ specify init . --ai amp --force</code></pre>
       <button class="accordion-header">Documentation Freshness (RFC Pattern)</button>
       <div class="accordion-content">
         <h3>RFC Pattern + Expiry Headers</h3>
-        <p>Every document in <code>.speckit/</code> uses YAML frontmatter to track freshness:</p>
+        <p>Every document in <code>.specify/</code> uses YAML frontmatter to track freshness:</p>
         <pre><code>---
 id: SPEC-001-feature-name
 type: spec
@@ -487,7 +540,7 @@ What would you like to do?
         </ul>
 
         <h3>Team Configuration</h3>
-        <p>Edit <code>.speckit/memory/team.md</code> to add team members for the branch selector.</p>
+        <p>Edit <code>.specify/memory/team.md</code> to add team members for the branch selector.</p>
       </div>
     </section>
 
@@ -532,16 +585,19 @@ What would you like to do?
 │   ├── CODEOWNERS
 │   ├── copilot-instructions.md  # GitHub Copilot
 │   └── dependabot.yml
-├── .speckit/
+├── .specify/
 │   ├── memory/                  # Persistent knowledge
 │   │   ├── constitution.md
 │   │   ├── documentation-strategy.md
 │   │   ├── team.md
 │   │   └── customizations.md
-│   ├── specs/                   # Feature specs
-│   ├── spec.md                  # Current spec
-│   ├── plan.md                  # Current plan
-│   └── tasks.md                 # Current tasks
+│   ├── scripts/                 # Spec-Kit automation
+│   ├── specs/                   # Feature specs (created per-feature)
+│   │   └── [FEATURE-NAME]/      # e.g., user-auth/
+│   │       ├── spec.md          # What to build
+│   │       ├── plan.md          # How to build
+│   │       └── tasks.md         # Work breakdown
+│   └── templates/               # Document templates
 ├── .vscode/                     # VS Code config
 ├── docs/
 │   ├── site/                    # This guide
@@ -549,8 +605,8 @@ What would you like to do?
 │   ├── GETTING_STARTED.md
 │   └── ENVIRONMENT_SETUP.md
 ├── scripts/
-│   ├── git-helper.sh
-│   └── upgrade-speckit.sh
+│   ├── git-helper.sh            # Git workflow helper
+│   └── upgrade-speckit.sh       # Upgrade script
 ├── .editorconfig
 ├── .gitignore
 ├── CLAUDE.md
@@ -565,7 +621,7 @@ What would you like to do?
       <button class="accordion-header">Upgrading & Maintenance</button>
       <div class="accordion-content">
         <h3>Tracking Customizations</h3>
-        <p><code>.speckit/memory/customizations.md</code> documents all changes made to the template:</p>
+        <p><code>.specify/memory/customizations.md</code> documents all changes made to the template:</p>
         <ul>
           <li>Added frontmatter fields</li>
           <li>Modified templates</li>
