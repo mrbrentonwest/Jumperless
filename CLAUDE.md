@@ -66,3 +66,29 @@ Review intervals:
 ## Branch Naming
 Format: `{username}/{description}`
 Team roster in `.specify/memory/team.md`
+
+## Template Updates (For Forked Projects)
+Projects forked from `project-starter` can pull template updates.
+
+### First-time setup (run once after forking):
+```bash
+./scripts/setup-upstream.sh
+```
+
+### Pull latest template updates:
+```bash
+git fetch upstream
+git merge upstream/master --allow-unrelated-histories
+```
+
+### Recommended flow for feature branches:
+1. Merge upstream into main first
+2. Then merge main into your feature branch
+
+```bash
+git checkout main
+git fetch upstream
+git merge upstream/master
+git checkout your-feature-branch
+git merge main
+```
