@@ -3,6 +3,41 @@
 ## Project Type
 This is a **project template** for starting new projects with Spec-Driven Development.
 
+## Spec-Kit Workflow
+
+### Content Flow
+| Content | Location | Purpose |
+|---------|----------|---------|
+| Specs | `.specify/specs/[FEATURE-NAME]/` | Define what to build |
+| Code | Project root (`src/`, `tests/`, etc.) | The actual implementation |
+
+### Per-Feature Folder Structure
+Each feature gets its own folder in `.specify/specs/`:
+```
+.specify/specs/
+└── user-authentication/        # Feature folder
+    ├── spec.md                 # What to build (user stories, requirements)
+    ├── plan.md                 # How to build (architecture, design)
+    ├── tasks.md                # Work breakdown (ordered task list)
+    ├── research.md             # (optional) Technical research
+    └── gap.md                  # (optional) Gap analysis
+```
+
+### Command Workflow
+```
+/speckit.constitution  →  Define project principles (one-time setup)
+/speckit.specify       →  Create spec.md (what to build)
+/speckit.clarify       →  Ask clarifying questions, refine spec
+/speckit.plan          →  Create plan.md (how to build)
+/speckit.tasks         →  Create tasks.md (work breakdown)
+/speckit.analyze       →  Cross-artifact consistency check
+/speckit.implement     →  Execute tasks, write code to PROJECT ROOT
+/speckit.checklist     →  Generate verification checklist
+```
+
+### Key Insight
+The `.specify/` folder contains **planning documents only**. All actual code is written to the main project structure (wherever `src/`, `backend/`, `frontend/`, etc. are located).
+
 ## Key Files
 - `.specify/memory/constitution.md` - Project principles
 - `.specify/memory/documentation-strategy.md` - RFC Pattern + Expiry Headers rules
