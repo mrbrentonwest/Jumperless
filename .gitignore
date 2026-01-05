@@ -79,6 +79,11 @@ temp/
 # Jumperless app data (device-specific)
 Data/
 
+# Jumperless binaries and firmware
+arduino-cli
+firmware.uf2
+*.uf2
+
 # Secrets and credentials
 *.pem
 *.key
